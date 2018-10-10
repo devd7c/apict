@@ -1,0 +1,48 @@
+----------CREATE TABLES--------------------
+php artisan migrate
+php artisan migrate:refresh
+
+----------POPULATE TABLES-------------------
+php artisan db:seed
+
+---------GENERATE POPULATE TABLES----------
+php artisan migrate:refresh --seed
+
+---------GENERATE MODEL & MIGRATION----------
+php artisan make:model [model_name] -m
+
+---------GENERATE CONTROLLER----------
+php artisan make:controller [dir_name]/[controller_name] -r
+
+---------GENERATE CONTROLLER WITH MODEL----------
+php artisan make:controller [dir_name]/[controller_name] -r -m [model_name]
+
+---------GENERATE TRANSFORMER----------
+php artisan make:transformer [controller_name]Transformer
+
+---------GENERATE PIVOT TABLE----------
+php artisan make:migration [table_name]_[table_name]_table --create=[table_name]_[table_name]
+
+********PASSPORT**************
+Client ID: 3
+Client secret: nz2TxzZsDFYrfMQxQpWKprtq2sgxqEYu1JqSbTmZ
+
+Client ID: 4
+Client Secret: w7ldtHO7gHqnd14vS0h1OsrThmW77xCA75p4zPL3
+
+Client ID: 5
+Client Secret: Jx5xu5IlWcSK5lvA7Wo8DeDtorZcZPnb75SGFiIj
+
+Client ID: 7
+Client Secret: Nt81vTy3oIgPF0mdY71tzMzREncDOJ6jttXbx2BM
+
+
+***************TESTED***********************
+http://laravel.local/oauth/authorize?client_id=6&redirect_uri=http://laravel.local/api&response_type=code
+laravel.local/oauth/authorize?client_id=6&redirect_uri=http://laravel.local/api&response_type=token
+
+
+uauer@example.org
+secret
+
+https://form.jotform.com/81274441091957
