@@ -56,3 +56,9 @@ git push origin master
 
 -------------UPDATE GIT REPOSITORY---------------
 git pull origin master
+
+-------------DISCARD LOCAL CHANGES--------------
+git stash
+
+-------------MERGE AND PULL LOCAL CHANGES--------------
+git stash pop
