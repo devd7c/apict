@@ -46,3 +46,10 @@ uauer@example.org
 secret
 
 https://form.jotform.com/81274441091957
+
+
+*********************GITHUB**********************************
+git init
+git add .
+git commit -m "description commit"
+git push origin master
