@@ -53,3 +53,6 @@ git init
 git add .
 git commit -m "description commit"
 git push origin master
+
+-------------UPDATE GIT REPOSITORY---------------
+git pull origin master
