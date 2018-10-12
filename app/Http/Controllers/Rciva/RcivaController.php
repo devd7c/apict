@@ -217,7 +217,7 @@ class RcivaController extends ApiController
                 'rcivas.id', 'rcivas.periodo_id', 'rcivas.empleado_id', 'rcivas.gestion_id', 'rcivas.haber_basico', 'rcivas.sueldo', 'rcivas.saldo', 'rcivas.factura',
                 'rcivas.ans', 'rcivas.sueldo_neto', 'rcivas.smn2', 'rcivas.base_imponible', 'rcivas.debito_fiscal', 'rcivas.credito_fiscal', 'rcivas.smn2_iva',
                 'rcivas.saldo_anterior', 'rcivas.saldo_anterior_actualizado', 'rcivas.saldo_anterior_nuevo', 'rcivas.impuesto_periodo', 'rcivas.credito_fiscal_dependiente',
-                DB::raw('CONCAT(empleados.ap_paterno," ",empleados.ap_materno," ",empleados.nombre) as nombre_completo'), 'empleados.empresa_id', 'empresas.nombre as nombre_empresa'
+                DB::raw("CONCAT(empleados.ap_paterno,' ',empleados.ap_materno,' ',empleados.nombre) AS nombre_completo"), 'empleados.empresa_id', 'empresas.nombre AS nombre_empresa'
             )
             ->join('gestions','gestions.id','=','rcivas.gestion_id')
             ->join('empleados','empleados.id','=','rcivas.empleado_id')

@@ -134,18 +134,18 @@ class HoraController extends ApiController
             ->join('empleados','empleados.id','=','horas.empleado_id')
             ->join('periodos', 'periodos.id', '=', 'horas.periodo_id')
             ->join('gestions', 'gestions.id', '=', 'horas.gestion_id')
-            ->groupBy('horas.id')
+            //->groupBy('horas.id')
             ->where('horas.deleted_at', '=', null) // Ocultar campos eliminados
             ->where(DB::raw("concat_ws(' ', empleados.ap_paterno, empleados.ap_materno, empleados.nombre, gestions.periodo_inicio)"), 'LIKE',  '%' . $request["search"] .'%')
             ->where(function ($query) use ($request) {
-                if ($request['empresa'] != null) {
-                    $query->where('gestions.empresa_id', '=', $request['empresa']);
+                if ($request["empresa"] != null) {
+                    $query->where('gestions.empresa_id', '=', $request["empresa"]);
                 }
-                if ($request['gestion'] != null) {
-                    $query->where('horas.gestion_id', '=', $request['gestion']);
+                if ($request["gestion"] != null) {
+                    $query->where('horas.gestion_id', '=', $request["gestion"]);
                 }
-                if ($request['periodo'] != null) {
-                    $query->where('horas.periodo_id', '=', $request['periodo']);
+                if ($request["periodo"] != null) {
+                    $query->where('horas.periodo_id', '=', $request["periodo"]);
                 }
             })
             ->orderBy($sortBy[0], $sortOrder[0])
