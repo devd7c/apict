@@ -266,11 +266,11 @@ class EmpleadoController extends ApiController
                 'puestos.nombre as nombre_puesto', 'puestos.descripcion as descripcion_puesto',
                 'cargos.nombre as nombre_cargo', 'cargos.descripcion as descripcion_cargo'
             )
-            ->join('empresas','empresas.id','=','empleados.empresa_id')
-            ->join('contratos', 'contratos.id', '=', 'empleados.contrato_id')
-            ->join('puestos', 'puestos.id', '=', 'empleados.puesto_id')
-            ->join('cargos', 'cargos.id', '=', 'empleados.cargo_id')
-            ->groupBy('empleados.id')
+            ->join("empresas","empresas.id","=","empleados.empresa_id")
+            ->join("contratos", "contratos.id", "=", "empleados.contrato_id")
+            ->join("puestos", "puestos.id", "=", "empleados.puesto_id")
+            ->join("cargos", "cargos.id", "=", "empleados.cargo_id")
+            ->groupBy("empleados.id")
             ->where('empleados.deleted_at', '=', null) // Ocultar campos eliminados
             ->where(DB::raw("CONCAT(empleados.ap_paterno,' ',empleados.ap_materno,' ',empleados.nombre,' ',contratos.nombre)"), "LIKE",  "%" . $request["search"] ."%")
             ->where(function ($query) use ($request) {
