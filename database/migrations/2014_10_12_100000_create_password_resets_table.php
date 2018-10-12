@@ -28,7 +28,8 @@ class CreatePasswordResetsTable extends Migration
      */
     public function down()
     {
-        DB::statement("TRUNCATE TABLE password_resets RESTART IDENTITY CASCADE");
+        DB::statement('ALTER password_resets DISABLE TRIGGER ALL;');
         Schema::dropIfExists('password_resets');
+        DB::statement('ALTER password_resets DISABLE TRIGGER ALL;');
     }
 }

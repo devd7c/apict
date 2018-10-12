@@ -36,7 +36,8 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        DB::statement("TRUNCATE TABLE users RESTART IDENTITY CASCADE");
+        DB::statement('ALTER users DISABLE TRIGGER ALL;');
         Schema::dropIfExists('users');
+        DB::statement('ALTER users DISABLE TRIGGER ALL;');
     }
 }
