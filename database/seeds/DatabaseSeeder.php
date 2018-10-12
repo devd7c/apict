@@ -160,6 +160,8 @@ class DatabaseSeeder extends Seeder
         factory(Descuento::class, $descuentoQuantity)->create();
         factory(Tdescuento::class, $tDescuentoQuantity)->create();
 
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+
         /*factory(Empleado::class, $empleadoQuantity)
             ->create()
             ->each(function (Empleado $empleado) {
