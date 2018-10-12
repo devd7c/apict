@@ -274,14 +274,14 @@ class EmpleadoController extends ApiController
             ->where('empleados.deleted_at', '=', null) // Ocultar campos eliminados
             ->where(DB::raw("CONCAT(empleados.ap_paterno,' ',empleados.ap_materno,' ',empleados.nombre,' ',contratos.nombre)"), "LIKE",  "%" . $request["search"] ."%")
             ->where(function ($query) use ($request) {
-                if ($request['empresa'] != null) {
-                    $query->where('empresas.id', '=', $request['empresa']);
+                if ($request["empresa"] != null) {
+                    $query->where("empresas.id", "=", $request['empresa']);
                 }
-                if ($request['sexo'] != null) {
-                    $query->where('empleados.sexo', '=', $request['sexo']);
+                if ($request["sexo"] != null) {
+                    $query->where("empleados.sexo", "=", $request["sexo"]);
                 }
-                if ($request['afiliacion'] != null) {
-                    $query->where('empleados.afiliacion', '=', $request['afiliacion']);
+                if ($request["afiliacion"] != null) {
+                    $query->where("empleados.afiliacion", "=", $request["afiliacion"]);
                 }
             })
             ->orderBy($sortBy[0], $sortOrder[0])
