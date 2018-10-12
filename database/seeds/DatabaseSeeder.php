@@ -41,7 +41,6 @@ class DatabaseSeeder extends Seeder
 
     public function run()
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
 
         User::truncate();
         Category::truncate();
@@ -159,8 +158,6 @@ class DatabaseSeeder extends Seeder
         factory(Tmulta::class, $tMultaQuantity)->create();
         factory(Descuento::class, $descuentoQuantity)->create();
         factory(Tdescuento::class, $tDescuentoQuantity)->create();
-
-        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
 
         /*factory(Empleado::class, $empleadoQuantity)
             ->create()
