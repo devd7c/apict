@@ -20,7 +20,7 @@ class CreateRegperiodosTable extends Migration
             $table->float('ufv');
             $table->string('activo'); //1=Si, 0=No
 
-            $table->integer('periodo_id')->unsigned();
+            $table->integer('periodo_id')->unsigned()->index();
 
             $table->timestamps();
             $table->softDeletes();//deleted_at

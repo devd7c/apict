@@ -19,7 +19,7 @@ class CreateTbonosTable extends Migration
             $table->string('fecha');
             $table->string('descripcion');
 
-            $table->integer('bono_id')->unsigned();
+            $table->integer('bono_id')->unsigned()->index();
 
             $table->timestamps();
             $table->softDeletes();//deleted_at

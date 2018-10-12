@@ -20,7 +20,7 @@ class CreateTdomingosTable extends Migration
             $table->date('fecha');
             $table->string('descripcion');
 
-            $table->integer('domingo_id')->unsigned();
+            $table->integer('domingo_id')->unsigned()->index();
 
             $table->timestamps();
             $table->softDeletes();//deleted_at

@@ -20,7 +20,7 @@ class CreateThorasTable extends Migration
             $table->date('fecha');
             $table->string('descripcion');
 
-            $table->integer('hora_id')->unsigned();
+            $table->integer('hora_id')->unsigned()->index();
 
             $table->timestamps();
             $table->softDeletes();//deleted_at

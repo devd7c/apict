@@ -35,11 +35,11 @@ class CreateEmpleadosTable extends Migration
             $table->string('categoria'); // Es de acuerdo con los años trabajados, ej.: el escalafón del magisterio.
             $table->string('domicilio');
             $table->string('obrero'); //1=Si, 2=No
-            $table->integer('empresa_id')->unsigned();
-            $table->integer('sucursal_id')->unsigned();
-            $table->integer('contrato_id')->unsigned();
-            $table->integer('puesto_id')->unsigned();
-            $table->integer('cargo_id')->unsigned();
+            $table->integer('empresa_id')->unsigned()->index();
+            $table->integer('sucursal_id')->unsigned()->index();
+            $table->integer('contrato_id')->unsigned()->index();
+            $table->integer('puesto_id')->unsigned()->index();
+            $table->integer('cargo_id')->unsigned()->index();
             $table->timestamps();
             $table->softDeletes();//deleted_at
 

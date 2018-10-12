@@ -40,7 +40,7 @@ class CreateLaboralsTable extends Migration
             $table->decimal('cba_7');
             $table->string('activo')->default('0'); //1=Si, 0=No
 
-            $table->integer('empresa_id')->unsigned();
+            $table->integer('empresa_id')->unsigned()->index();
 
             $table->timestamps();
             $table->softDeletes();//deleted_at

@@ -22,7 +22,7 @@ class CreateSucursalsTable extends Migration
             $table->string('fono');
             $table->string('nro_pat');
 
-            $table->integer('empresa_id')->unsigned();
+            $table->integer('empresa_id')->unsigned()->index();
 
             $table->timestamps();
             $table->softDeletes();//deleted_at

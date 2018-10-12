@@ -21,7 +21,7 @@ class CreatePeriodosTable extends Migration
             $table->string('cierre')->default(2); //1=Si, 2=No
             $table->float('cierre_ufv')->default(0); //Ejem: 2.14454
 
-            $table->integer('gestion_id')->unsigned();
+            $table->integer('gestion_id')->unsigned()->index();
 
             $table->timestamps();
             $table->softDeletes();//deleted_at

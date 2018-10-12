@@ -30,8 +30,8 @@ class CreatePafiliadosTable extends Migration
 
             $table->decimal('cotizacion_adicional');
 
-            $table->integer('empleado_id')->unsigned();
-            $table->integer('proceso_id')->unsigned();
+            $table->integer('empleado_id')->unsigned()->index();
+            $table->integer('proceso_id')->unsigned()->index();
 
             $table->timestamps();
             $table->softDeletes();//deleted_at

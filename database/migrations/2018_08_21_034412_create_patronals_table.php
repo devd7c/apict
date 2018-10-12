@@ -22,7 +22,7 @@ class CreatePatronalsTable extends Migration
             $table->decimal('sip'); // Aporte Patronal Solidario: 3% del total ganado del dependiente, como aporte patronal solidario con destino al fondo solidario
             $table->string('activo')->default('0'); //1=Si, 0=No
 
-            $table->integer('empresa_id')->unsigned();
+            $table->integer('empresa_id')->unsigned()->index();
 
 
             $table->timestamps();

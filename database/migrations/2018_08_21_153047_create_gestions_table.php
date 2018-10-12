@@ -19,7 +19,7 @@ class CreateGestionsTable extends Migration
             $table->string('periodo_rango'); //1=Enero-Diciembre, 2=Abril-Marzo 3=Octubre-Septiembre
             $table->string('activo')->default('1'); //1=Si, 2=No
 
-            $table->integer('empresa_id')->unsigned();
+            $table->integer('empresa_id')->unsigned()->index();
 
             $table->timestamps();
             $table->softDeletes();//deleted_at

@@ -16,9 +16,9 @@ class CreateDomingosTable extends Migration
         Schema::create('domingos', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('empleado_id')->unsigned();
-            $table->integer('gestion_id')->unsigned();
-            $table->integer('periodo_id')->unsigned();
+            $table->integer('empleado_id')->unsigned()->index();
+            $table->integer('gestion_id')->unsigned()->index();
+            $table->integer('periodo_id')->unsigned()->index();
 
             $table->timestamps();
             $table->softDeletes();//deleted_at

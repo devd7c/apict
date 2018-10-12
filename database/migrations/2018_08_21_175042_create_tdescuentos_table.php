@@ -19,7 +19,7 @@ class CreateTdescuentosTable extends Migration
             $table->date('fecha');
             $table->string('descripcion');
 
-            $table->integer('descuento_id')->unsigned();
+            $table->integer('descuento_id')->unsigned()->index();
 
             $table->timestamps();
             $table->softDeletes();//deleted_at
