@@ -134,9 +134,9 @@ class DomingoController extends ApiController
             ->join('empleados','empleados.id','=','domingos.empleado_id')
             ->join('periodos', 'periodos.id', '=', 'domingos.periodo_id')
             ->join('gestions', 'gestions.id', '=', 'domingos.gestion_id')
-            ->groupBy('domingos.id')
+            //->groupBy('domingos.id')
             ->where('domingos.deleted_at', '=', null) // Ocultar campos eliminados
-            ->where(DB::raw("CONCAT(empleados.ap_paterno,' ',empleados.ap_materno,' ',empleados.nombre,' ',gestions.periodo_inicio)"), "LIKE",  "%" . $request["search"] ."%")
+            ->where(DB::raw("concat_ws(' ', empleados.ap_paterno, empleados.ap_materno, empleados.nombre, gestions.periodo_inicio)"), "LIKE",  "%" . $request["search"] ."%")
             ->where(function ($query) use ($request) {
                 if ($request['empresa'] != null) {
                     $query->where('gestions.empresa_id', '=', $request['empresa']);

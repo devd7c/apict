@@ -136,9 +136,9 @@ class MultaController extends ApiController
             ->join('empleados','empleados.id','=','multas.empleado_id')
             ->join('periodos', 'periodos.id', '=', 'multas.periodo_id')
             ->join('gestions', 'gestions.id', '=', 'multas.gestion_id')
-            ->groupBy('multas.id')
+            // ->groupBy('multas.id')
             ->where('multas.deleted_at', '=', null) // Ocultar campos eliminados
-            ->where(DB::raw("CONCAT(empleados.ap_paterno,' ',empleados.ap_materno,' ',empleados.nombre,' ',gestions.periodo_inicio)"), "LIKE",  "%" . $request["search"] ."%")
+            ->where(DB::raw("concat_ws(' ', empleados.ap_paterno, empleados.ap_materno, empleados.nombre, gestions.periodo_inicio)"), "LIKE",  "%" . $request["search"] ."%")
             ->where(function ($query) use ($request) {
                 if ($request['empresa'] != null) {
                     $query->where('gestions.empresa_id', '=', $request['empresa']);

@@ -165,7 +165,7 @@ class PeriodoController extends ApiController
             )
             ->where('periodos.deleted_at', '=', null) // Ocultar campos eliminados
             ->where('periodos.gestion_id', '=', $idGestion)
-            ->where(DB::raw("CONCAT(periodos.inicio_mes,' ',periodos.fin_mes)"), "LIKE",  "%" . $request["search"] ."%")
+            ->where(DB::raw("concat_ws(' ', periodos.inicio_mes, periodos.fin_mes)"), "LIKE",  "%" . $request["search"] ."%")
             ->orderBy($sortBy[0], $sortOrder[0])
             ->paginate($pageSize[0]);
 
