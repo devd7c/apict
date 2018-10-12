@@ -139,7 +139,7 @@ class SucursalController extends ApiController
             )
             ->where('sucursals.deleted_at', '=', null) // Ocultar campos eliminados
             ->where('sucursals.empresa_id', '=', $idEmpresa['entityId'])
-            ->where(DB::raw('CONCAT(sucursals.nombre," ",sucursals.ciudad," ",sucursals.nro_pat, " ",sucursals.nit)'), 'like',  '%' . $request['search'] .'%')
+            ->where(DB::raw("CONCAT(sucursals.nombre,' ',sucursals.ciudad,' ',sucursals.nro_pat,' ',sucursals.nit)"), "LIKE",  "%" . $request["search"] ."%")
             ->orderBy($sortBy[0], $sortOrder[0])
             ->paginate($pageSize[0]);
 

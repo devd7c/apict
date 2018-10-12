@@ -132,7 +132,7 @@ class TdescuentoController extends ApiController
             )
             ->where('tdescuentos.deleted_at', '=', null) // Ocultar campos eliminados
             ->where('tdescuentos.descuento_id', '=', $idDescuento['entityId'])
-            ->where('tdescuentos.descripcion', 'like',  '%' . $request['search'] .'%')
+            ->where('tdescuentos.descripcion', "LIKE",  "%" . $request["search"] ."%")
             ->orderBy($sortBy[0], $sortOrder[0])
             ->paginate($pageSize[0]);
 

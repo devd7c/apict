@@ -136,7 +136,7 @@ class BonoController extends ApiController
             ->join('gestions', 'gestions.id', '=', 'bonos.gestion_id')
             ->groupBy('bonos.id')
             ->where('bonos.deleted_at', '=', null) // Ocultar campos eliminados
-            ->where(DB::raw('CONCAT(empleados.ap_paterno," ",empleados.ap_materno," ",empleados.nombre, " ",gestions.periodo_inicio)'), 'like',  '%' . $request['search'] .'%')
+            ->where(DB::raw("CONCAT(empleados.ap_paterno,' ',empleados.ap_materno,' ',empleados.nombre,' ',gestions.periodo_inicio)"), "LIKE",  "%" . $request["search"] ."%")
             ->where(function ($query) use ($request) {
                 if ($request['empresa'] != null) {
                     $query->where('gestions.empresa_id', '=', $request['empresa']);

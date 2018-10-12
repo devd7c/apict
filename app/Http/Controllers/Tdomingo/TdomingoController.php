@@ -134,7 +134,7 @@ class TdomingoController extends ApiController
             )
             ->where('tdomingos.deleted_at', '=', null) // Ocultar campos eliminados
             ->where('tdomingos.domingo_id', '=', $idDomingo['entityId'])
-            ->where('tdomingos.descripcion', 'like',  '%' . $request['search'] .'%')
+            ->where('tdomingos.descripcion', "LIKE",  "%" . $request["search"] ."%")
             ->orderBy($sortBy[0], $sortOrder[0])
             ->paginate($pageSize[0]);
 

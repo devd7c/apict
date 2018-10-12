@@ -134,7 +134,7 @@ class ThoraController extends ApiController
             )
             ->where('thoras.deleted_at', '=', null) // Ocultar campos eliminados
             ->where('thoras.hora_id', '=', $idHora['entityId'])
-            ->where('thoras.descripcion', 'like',  '%' . $request['search'] .'%')
+            ->where('thoras.descripcion', "LIKE",  "%" . $request["search"] ."%")
             ->orderBy($sortBy[0], $sortOrder[0])
             ->paginate($pageSize[0]);
 

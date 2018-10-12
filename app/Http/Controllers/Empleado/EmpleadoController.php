@@ -272,7 +272,7 @@ class EmpleadoController extends ApiController
             ->join('cargos', 'cargos.id', '=', 'empleados.cargo_id')
             ->groupBy('empleados.id')
             ->where('empleados.deleted_at', '=', null) // Ocultar campos eliminados
-            ->where(DB::raw('CONCAT(empleados.ap_paterno," ",empleados.ap_materno," ",empleados.nombre, " ",contratos.nombre)'), 'like',  '%' . $request['search'] .'%')
+            ->where(DB::raw("CONCAT(empleados.ap_paterno,' ',empleados.ap_materno,' ',empleados.nombre,' ',contratos.nombre)"), "LIKE",  "%" . $request["search"] ."%")
             ->where(function ($query) use ($request) {
                 if ($request['empresa'] != null) {
                     $query->where('empresas.id', '=', $request['empresa']);

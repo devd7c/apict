@@ -133,7 +133,7 @@ class TmultaController extends ApiController
             )
             ->where('tmultas.deleted_at', '=', null) // Ocultar campos eliminados
             ->where('tmultas.multa_id', '=', $idMulta['entityId'])
-            ->where('tmultas.descripcion', 'like',  '%' . $request['search'] .'%')
+            ->where('tmultas.descripcion', "LIKE",  "%" . $request["search"] ."%")
             ->orderBy($sortBy[0], $sortOrder[0])
             ->paginate($pageSize[0]);
 

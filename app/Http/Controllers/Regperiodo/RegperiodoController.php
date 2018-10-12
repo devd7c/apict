@@ -140,7 +140,7 @@ class RegperiodoController extends ApiController
             )
             ->where('regperiodos.deleted_at', '=', null) // Ocultar campos eliminados
             ->where('regperiodos.periodo_id', '=', $idPeriodo['entityId'])
-            ->where(DB::raw('CONCAT(regperiodos.ufv," ",regperiodos.activo)'), 'like',  '%' . $request['search'] .'%')
+            ->where(DB::raw("CONCAT(regperiodos.ufv,' ',regperiodos.activo)"), "LIKE",  "%" . $request["search"] ."%")
             ->orderBy($sortBy[0], $sortOrder[0])
             ->paginate($pageSize[0]);
 

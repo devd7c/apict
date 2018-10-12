@@ -133,7 +133,7 @@ class TbonoController extends ApiController
             )
             ->where('tbonos.deleted_at', '=', null) // Ocultar campos eliminados
             ->where('tbonos.bono_id', '=', $idBono['entityId'])
-            ->where('tbonos.descripcion', 'like',  '%' . $request['search'] .'%')
+            ->where('tbonos.descripcion', "LIKE",  "%" . $request["search"] ."%")
             ->orderBy($sortBy[0], $sortOrder[0])
             ->paginate($pageSize[0]);
 
