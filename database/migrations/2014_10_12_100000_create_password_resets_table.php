@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\DB;
 
 class CreatePasswordResetsTable extends Migration
 {
@@ -27,9 +28,7 @@ class CreatePasswordResetsTable extends Migration
      */
     public function down()
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+        DB::statement("TRUNCATE TABLE password_resets RESTART IDENTITY CASCADE");
         Schema::dropIfExists('password_resets');
-        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
-
     }
 }
