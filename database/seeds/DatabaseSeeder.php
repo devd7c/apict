@@ -41,13 +41,40 @@ class DatabaseSeeder extends Seeder
 
     public function run()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
 
-        User::truncate();
+        /*User::truncate();
         Category::truncate();
         Product::truncate();
-        Transaction::truncate();
+        Transaction::truncate();*/
 
-        Empresa::truncate();
+        DB::statement("TRUNCATE TABLE users RESTART IDENTITY CASCADE");
+        DB::statement("TRUNCATE TABLE categories RESTART IDENTITY CASCADE");
+        DB::statement("TRUNCATE TABLE products RESTART IDENTITY CASCADE");
+        DB::statement("TRUNCATE TABLE transactions RESTART IDENTITY CASCADE");
+        DB::statement("TRUNCATE TABLE empresas RESTART IDENTITY CASCADE");
+        DB::statement("TRUNCATE TABLE sucursals RESTART IDENTITY CASCADE");
+        DB::statement("TRUNCATE TABLE gestions RESTART IDENTITY CASCADE");
+        DB::statement("TRUNCATE TABLE periodos RESTART IDENTITY CASCADE");
+        DB::statement("TRUNCATE TABLE regperiodos RESTART IDENTITY CASCADE");
+        DB::statement("TRUNCATE TABLE contratos RESTART IDENTITY CASCADE");
+        DB::statement("TRUNCATE TABLE puestos RESTART IDENTITY CASCADE");
+        DB::statement("TRUNCATE TABLE cargos RESTART IDENTITY CASCADE");
+        DB::statement("TRUNCATE TABLE laborals RESTART IDENTITY CASCADE");
+        DB::statement("TRUNCATE TABLE patronals RESTART IDENTITY CASCADE");
+        DB::statement("TRUNCATE TABLE empleados RESTART IDENTITY CASCADE");
+        DB::statement("TRUNCATE TABLE horas RESTART IDENTITY CASCADE");
+        DB::statement("TRUNCATE TABLE thoras RESTART IDENTITY CASCADE");
+        DB::statement("TRUNCATE TABLE domingos RESTART IDENTITY CASCADE");
+        DB::statement("TRUNCATE TABLE tdomingos RESTART IDENTITY CASCADE");
+        DB::statement("TRUNCATE TABLE bonos RESTART IDENTITY CASCADE");
+        DB::statement("TRUNCATE TABLE tbonos RESTART IDENTITY CASCADE");
+        DB::statement("TRUNCATE TABLE multas RESTART IDENTITY CASCADE");
+        DB::statement("TRUNCATE TABLE tmultas RESTART IDENTITY CASCADE");
+        DB::statement("TRUNCATE TABLE descuentos RESTART IDENTITY CASCADE");
+        DB::statement("TRUNCATE TABLE tdescuentos RESTART IDENTITY CASCADE");
+
+        /*Empresa::truncate();
         Sucursal::truncate();
         Gestion::truncate();
         Periodo::truncate();
@@ -67,7 +94,7 @@ class DatabaseSeeder extends Seeder
         Multa::truncate();
         Tmulta::truncate();
         Descuento::truncate();
-        Tdescuento::truncate();
+        Tdescuento::truncate();*/
         //Rciva::truncate();
 
         DB::table('category_product')->truncate();

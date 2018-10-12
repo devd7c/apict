@@ -37,8 +37,6 @@ class CreateBonosTable extends Migration
      */
     public function down()
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('bonos');
-        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }
