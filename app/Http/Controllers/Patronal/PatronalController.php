@@ -132,7 +132,7 @@ class PatronalController extends ApiController
             )
             ->where('patronals.deleted_at', '=', null) // Ocultar campos eliminados
             ->where('patronals.empresa_id', '=', $idEmpresa['entityId'])
-            ->where(DB::raw("concat_ws(' ', patronals.sarp, patronals.activo)"), "LIKE",  "%" . $request["search"] ."%")
+            ->where(DB::raw("concat_ws(' ', patronals.sarp, patronals.activo)"), 'LIKE',  '%' . $request["search"] .'%')
             ->orderBy($sortBy[0], $sortOrder[0])
             ->paginate($pageSize[0]);
 

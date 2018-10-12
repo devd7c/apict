@@ -145,7 +145,7 @@ class LaboralController extends ApiController
             )
             ->where('laborals.deleted_at', '=', null) // Ocultar campos eliminados
             ->where('laborals.empresa_id', '=', $idEmpresa['entityId'])
-            ->where(DB::raw("concat_ws(' ', laborals.smn, laborals.activo)"), "LIKE",  "%" . $request["search"] ."%")
+            ->where(DB::raw("concat_ws(' ', laborals.smn, laborals.activo)"), 'LIKE',  '%' . $request["search"] .'%')
             ->orderBy($sortBy[0], $sortOrder[0])
             ->paginate($pageSize[0]);
 

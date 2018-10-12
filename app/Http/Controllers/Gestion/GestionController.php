@@ -153,7 +153,7 @@ class GestionController extends ApiController
             )
             ->where('gestions.deleted_at', '=', null) // Ocultar campos eliminados
             ->where('gestions.empresa_id', '=', $idEmpresa['entityId'])
-            ->where(DB::raw("concat_ws(' ', gestions.periodo_inicio, gestions.periodo_rango)"), "LIKE",  "%" . $request["search"] ."%")
+            ->where(DB::raw("concat_ws(' ', gestions.periodo_inicio, gestions.periodo_rango)"), 'LIKE',  '%' . $request["search"] .'%')
             ->orderBy($sortBy[0], $sortOrder[0])
             ->paginate($pageSize[0]);
 

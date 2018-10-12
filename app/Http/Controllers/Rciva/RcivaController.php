@@ -224,16 +224,16 @@ class RcivaController extends ApiController
             ->join('empresas','empresas.id','=','empleados.empresa_id')
             //->groupBy('rcivas.id')
             ->where('rcivas.deleted_at', '=', null) // Ocultar campos eliminados
-            ->where(DB::raw("concat_ws(' ', empleados.ap_paterno, empleados.ap_materno, empleados.nombre, rcivas.sueldo)"), "LIKE",  "%" . $request["search"] ."%")
+            ->where(DB::raw("concat_ws(' ', empleados.ap_paterno, empleados.ap_materno, empleados.nombre, rcivas.sueldo)"), 'LIKE',  '%' . $request["search"] .'%')
             ->where(function ($query) use ($request) {
-                if ($request['empresa'] != null) {
-                    $query->where('empresas.id', '=', $request['empresa']);
+                if ($request["empresa"] != null) {
+                    $query->where('empresas.id', '=', $request["empresa"]);
                 }
                 if ($request['gestion'] != null) {
-                    $query->where('rcivas.gestion_id', '=', $request['gestion']);
+                    $query->where('rcivas.gestion_id', '=', $request["gestion"]);
                 }
                 if ($request['periodo'] != null) {
-                    $query->where('rcivas.periodo_id', '=', $request['periodo']);
+                    $query->where('rcivas.periodo_id', '=', $request["periodo"]);
                 }
             })
             ->orderBy($sortBy[0], $sortOrder[0])
