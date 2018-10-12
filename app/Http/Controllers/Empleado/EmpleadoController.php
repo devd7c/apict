@@ -253,35 +253,35 @@ class EmpleadoController extends ApiController
         $dependientes = DB::table('empleados')
             ->select(
                 'empleados.id', 'empleados.tipo_doc', 'empleados.nro_doc', 'empleados.exp_doc', 'empleados.afiliacion',
-                DB::raw("CONCAT(empleados.ap_paterno,' ',empleados.ap_materno,' ',empleados.nombre) as nombre_completo"),
+                DB::raw("CONCAT(empleados.ap_paterno,' ',empleados.ap_materno,' ',empleados.nombre) AS nombre_completo"),
                 'empleados.ap_paterno', 'empleados.ap_materno', 'empleados.ap_casada', 'empleados.nombre',
                 'empleados.nua_cua', 'empleados.nacionalidad', 'empleados.fecha_nacimiento',
                 'empleados.sexo', 'empleados.jubilado', 'empleados.fecha_ingreso', 'empleados.fecha_retiro',
                 'empleados.haber_basico', 'empleados.nro_matricula', 'empleados.categoria', 'empleados.domicilio',
                 'empleados.obrero', 'empleados.empresa_id', 'empleados.sucursal_id',
                 'empleados.contrato_id', 'empleados.puesto_id', 'empleados.cargo_id',
-                'empresas.nombre as nombre_empresa', 'empresas.nit', 'empresas.nombre_rep_legal',
+                'empresas.nombre AS nombre_empresa', 'empresas.nit', 'empresas.nombre_rep_legal',
                 'empresas.titulo_rep_legal', 'empresas.tipo_doc', 'empresas.nro_doc', 'empresas.exp_doc',
-                'contratos.nombre as nombre_contrato', 'contratos.descripcion as descripcion_contrato',
-                'puestos.nombre as nombre_puesto', 'puestos.descripcion as descripcion_puesto',
-                'cargos.nombre as nombre_cargo', 'cargos.descripcion as descripcion_cargo'
+                'contratos.nombre AS nombre_contrato', 'contratos.descripcion AS descripcion_contrato',
+                'puestos.nombre AS nombre_puesto', 'puestos.descripcion AS descripcion_puesto',
+                'cargos.nombre AS nombre_cargo', 'cargos.descripcion AS descripcion_cargo'
             )
-            ->join("empresas","empresas.id","=","empleados.empresa_id")
-            ->join("contratos", "contratos.id", "=", "empleados.contrato_id")
-            ->join("puestos", "puestos.id", "=", "empleados.puesto_id")
-            ->join("cargos", "cargos.id", "=", "empleados.cargo_id")
-            ->groupBy("empleados.id")
+            ->join('empresas','empresas.id','=','empleados.empresa_id')
+            ->join('contratos', 'contratos.id', '=', 'empleados.contrato_id')
+            ->join('puestos', 'puestos.id', '=', 'empleados.puesto_id')
+            ->join('cargos', 'cargos.id', '=', 'empleados.cargo_id')
+            ->groupBy('empleados.id')
             ->where('empleados.deleted_at', '=', null) // Ocultar campos eliminados
             ->where(DB::raw("CONCAT(empleados.ap_paterno,' ',empleados.ap_materno,' ',empleados.nombre,' ',contratos.nombre)"), "LIKE",  "%" . $request["search"] ."%")
             ->where(function ($query) use ($request) {
                 if ($request["empresa"] != null) {
-                    $query->where("empresas.id", "=", $request['empresa']);
+                    $query->where('empresas.id', '=', $request["empresa"]);
                 }
                 if ($request["sexo"] != null) {
-                    $query->where("empleados.sexo", "=", $request["sexo"]);
+                    $query->where('empleados.sexo', '=', $request["sexo"]);
                 }
                 if ($request["afiliacion"] != null) {
-                    $query->where("empleados.afiliacion", "=", $request["afiliacion"]);
+                    $query->where('empleados.afiliacion', '=', $request["afiliacion"]);
                 }
             })
             ->orderBy($sortBy[0], $sortOrder[0])
