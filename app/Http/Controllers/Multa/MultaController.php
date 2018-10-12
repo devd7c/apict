@@ -122,7 +122,7 @@ class MultaController extends ApiController
             ->select(
                 'multas.id', 'multas.empleado_id', 'multas.gestion_id', 'multas.periodo_id',
                 'empleados.tipo_doc', 'empleados.nro_doc', 'empleados.exp_doc', 'empleados.afiliacion',
-                DB::raw('CONCAT(empleados.ap_paterno," ",empleados.ap_materno," ",empleados.nombre) as nombre_completo'),
+                DB::raw("CONCAT(empleados.ap_paterno,' ',empleados.ap_materno,' ',empleados.nombre) AS nombre_completo"),
                 'empleados.ap_paterno', 'empleados.ap_materno', 'empleados.ap_casada', 'empleados.nombre',
                 'empleados.nua_cua', 'empleados.nacionalidad', 'empleados.fecha_nacimiento',
                 'empleados.sexo', 'empleados.jubilado', 'empleados.fecha_ingreso', 'empleados.fecha_retiro',
@@ -138,16 +138,16 @@ class MultaController extends ApiController
             ->join('gestions', 'gestions.id', '=', 'multas.gestion_id')
             // ->groupBy('multas.id')
             ->where('multas.deleted_at', '=', null) // Ocultar campos eliminados
-            ->where(DB::raw("concat_ws(' ', empleados.ap_paterno, empleados.ap_materno, empleados.nombre, gestions.periodo_inicio)"), "LIKE",  "%" . $request["search"] ."%")
+            ->where(DB::raw("concat_ws(' ', empleados.ap_paterno, empleados.ap_materno, empleados.nombre, gestions.periodo_inicio)"), 'LIKE',  '%' . $request["search"] .'%')
             ->where(function ($query) use ($request) {
                 if ($request['empresa'] != null) {
-                    $query->where('gestions.empresa_id', '=', $request['empresa']);
+                    $query->where('gestions.empresa_id', '=', $request["empresa"]);
                 }
                 if ($request['gestion'] != null) {
-                    $query->where('multas.gestion_id', '=', $request['gestion']);
+                    $query->where('multas.gestion_id', '=', $request["gestion"]);
                 }
                 if ($request['periodo'] != null) {
-                    $query->where('multas.periodo_id', '=', $request['periodo']);
+                    $query->where('multas.periodo_id', '=', $request["periodo"]);
                 }
             })
             ->orderBy($sortBy[0], $sortOrder[0])
