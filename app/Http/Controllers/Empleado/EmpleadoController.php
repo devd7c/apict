@@ -253,7 +253,7 @@ class EmpleadoController extends ApiController
         $dependientes = DB::table('empleados')
             ->select(
                 'empleados.id', 'empleados.tipo_doc', 'empleados.nro_doc', 'empleados.exp_doc', 'empleados.afiliacion',
-                DB::raw('CONCAT(empleados.ap_paterno," ",empleados.ap_materno," ",empleados.nombre) as nombre_completo'),
+                DB::raw("CONCAT(empleados.ap_paterno,' ',empleados.ap_materno,' ',empleados.nombre) as nombre_completo"),
                 'empleados.ap_paterno', 'empleados.ap_materno', 'empleados.ap_casada', 'empleados.nombre',
                 'empleados.nua_cua', 'empleados.nacionalidad', 'empleados.fecha_nacimiento',
                 'empleados.sexo', 'empleados.jubilado', 'empleados.fecha_ingreso', 'empleados.fecha_retiro',
