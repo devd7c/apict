@@ -16,9 +16,9 @@ class CreateHorasTable extends Migration
         Schema::create('horas', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('empleado_id')->unsigned()->index();
-            $table->integer('gestion_id')->unsigned()->index();
-            $table->integer('periodo_id')->unsigned()->index();
+            $table->integer('empleado_id')->unsigned();
+            $table->integer('gestion_id')->unsigned();
+            $table->integer('periodo_id')->unsigned();
 
 
             $table->timestamps();
@@ -37,6 +37,8 @@ class CreateHorasTable extends Migration
      */
     public function down()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('horas');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

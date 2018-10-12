@@ -16,9 +16,9 @@ class CreateDescuentosTable extends Migration
         Schema::create('descuentos', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('empleado_id')->unsigned()->index();
-            $table->integer('gestion_id')->unsigned()->index();
-            $table->integer('periodo_id')->unsigned()->index();
+            $table->integer('empleado_id')->unsigned();
+            $table->integer('gestion_id')->unsigned();
+            $table->integer('periodo_id')->unsigned();
 
             $table->timestamps();
             $table->softDeletes();//deleted_at
@@ -36,6 +36,8 @@ class CreateDescuentosTable extends Migration
      */
     public function down()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('descuentos');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

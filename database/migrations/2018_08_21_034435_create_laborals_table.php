@@ -40,7 +40,7 @@ class CreateLaboralsTable extends Migration
             $table->decimal('cba_7');
             $table->string('activo')->default('0'); //1=Si, 0=No
 
-            $table->integer('empresa_id')->unsigned()->index();
+            $table->integer('empresa_id')->unsigned();
 
             $table->timestamps();
             $table->softDeletes();//deleted_at
@@ -56,6 +56,8 @@ class CreateLaboralsTable extends Migration
      */
     public function down()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('laborals');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

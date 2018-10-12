@@ -20,7 +20,7 @@ class CreateRegperiodosTable extends Migration
             $table->float('ufv');
             $table->string('activo'); //1=Si, 0=No
 
-            $table->integer('periodo_id')->unsigned()->index();
+            $table->integer('periodo_id')->unsigned();
 
             $table->timestamps();
             $table->softDeletes();//deleted_at
@@ -36,6 +36,8 @@ class CreateRegperiodosTable extends Migration
      */
     public function down()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('regperiodos');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

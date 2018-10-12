@@ -20,7 +20,7 @@ class CreateThorasTable extends Migration
             $table->date('fecha');
             $table->string('descripcion');
 
-            $table->integer('hora_id')->unsigned()->index();
+            $table->integer('hora_id')->unsigned();
 
             $table->timestamps();
             $table->softDeletes();//deleted_at
@@ -36,6 +36,8 @@ class CreateThorasTable extends Migration
      */
     public function down()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('thoras');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

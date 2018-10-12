@@ -16,9 +16,9 @@ class CreateDomingosTable extends Migration
         Schema::create('domingos', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('empleado_id')->unsigned()->index();
-            $table->integer('gestion_id')->unsigned()->index();
-            $table->integer('periodo_id')->unsigned()->index();
+            $table->integer('empleado_id')->unsigned();
+            $table->integer('gestion_id')->unsigned();
+            $table->integer('periodo_id')->unsigned();
 
             $table->timestamps();
             $table->softDeletes();//deleted_at
@@ -36,6 +36,8 @@ class CreateDomingosTable extends Migration
      */
     public function down()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('domingos');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

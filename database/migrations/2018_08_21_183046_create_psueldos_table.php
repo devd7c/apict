@@ -33,12 +33,12 @@ class CreatePsueldosTable extends Migration
             $table->decimal('tsip'); // S.I.P. 12.71%
             $table->decimal('trciva'); // RC. IVA 13%
 
-            $table->integer('empleado_id')->unsigned()->index();
-            $table->integer('sucursal_id')->unsigned()->index();
-            $table->integer('contrato_id')->unsigned()->index();
-            $table->integer('puesto_id')->unsigned()->index();
-            $table->integer('cargo_id')->unsigned()->index();
-            $table->integer('proceso_id')->unsigned()->index();
+            $table->integer('empleado_id')->unsigned();
+            $table->integer('sucursal_id')->unsigned();
+            $table->integer('contrato_id')->unsigned();
+            $table->integer('puesto_id')->unsigned();
+            $table->integer('cargo_id')->unsigned();
+            $table->integer('proceso_id')->unsigned();
 
             $table->timestamps();
             $table->softDeletes();//deleted_at
@@ -60,6 +60,8 @@ class CreatePsueldosTable extends Migration
      */
     public function down()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('psueldos');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

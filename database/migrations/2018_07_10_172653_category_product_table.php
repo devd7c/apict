@@ -14,8 +14,8 @@ class CategoryProductTable extends Migration
     public function up()
     {
         Schema::create('category_product', function (Blueprint $table) {
-            $table->integer('category_id')->unsigned()->index();
-            $table->integer('product_id')->unsigned()->index();
+            $table->integer('category_id')->unsigned();
+            $table->integer('product_id')->unsigned();
 
             $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('product_id')->references('id')->on('products');
@@ -29,6 +29,8 @@ class CategoryProductTable extends Migration
      */
     public function down()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('category_product');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

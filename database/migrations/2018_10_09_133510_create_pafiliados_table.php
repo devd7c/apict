@@ -30,8 +30,8 @@ class CreatePafiliadosTable extends Migration
 
             $table->decimal('cotizacion_adicional');
 
-            $table->integer('empleado_id')->unsigned()->index();
-            $table->integer('proceso_id')->unsigned()->index();
+            $table->integer('empleado_id')->unsigned();
+            $table->integer('proceso_id')->unsigned();
 
             $table->timestamps();
             $table->softDeletes();//deleted_at
@@ -48,6 +48,8 @@ class CreatePafiliadosTable extends Migration
      */
     public function down()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('pafiliados');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

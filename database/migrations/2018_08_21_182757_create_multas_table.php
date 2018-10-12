@@ -16,9 +16,9 @@ class CreateMultasTable extends Migration
         Schema::create('multas', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('empleado_id')->unsigned()->index();
-            $table->integer('gestion_id')->unsigned()->index();
-            $table->integer('periodo_id')->unsigned()->index();
+            $table->integer('empleado_id')->unsigned();
+            $table->integer('gestion_id')->unsigned();
+            $table->integer('periodo_id')->unsigned();
 
             $table->timestamps();
             $table->softDeletes();//deleted_at
@@ -37,6 +37,8 @@ class CreateMultasTable extends Migration
      */
     public function down()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('multas');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

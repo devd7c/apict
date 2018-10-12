@@ -32,9 +32,9 @@ class CreateRcivasTable extends Migration
             $table->float('impuesto_periodo');//Impuesto Determinado en el periodo
             $table->float('credito_fiscal_dependiente');//Credito Fiscal en Uso por el Dependiente
 
-            $table->integer('gestion_id')->unsigned()->index();
-            $table->integer('periodo_id')->unsigned()->index();
-            $table->integer('empleado_id')->unsigned()->index();
+            $table->integer('gestion_id')->unsigned();
+            $table->integer('periodo_id')->unsigned();
+            $table->integer('empleado_id')->unsigned();
 
             $table->timestamps();
             $table->softDeletes();//deleted_at
@@ -52,6 +52,8 @@ class CreateRcivasTable extends Migration
      */
     public function down()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('rcivas');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

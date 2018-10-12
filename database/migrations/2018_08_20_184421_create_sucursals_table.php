@@ -22,7 +22,7 @@ class CreateSucursalsTable extends Migration
             $table->string('fono');
             $table->string('nro_pat');
 
-            $table->integer('empresa_id')->unsigned()->index();
+            $table->integer('empresa_id')->unsigned();
 
             $table->timestamps();
             $table->softDeletes();//deleted_at
@@ -38,6 +38,8 @@ class CreateSucursalsTable extends Migration
      */
     public function down()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('sucursals');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

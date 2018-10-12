@@ -19,7 +19,7 @@ class CreateTmultasTable extends Migration
             $table->date('fecha');
             $table->string('descripcion');
 
-            $table->integer('multa_id')->unsigned()->index();
+            $table->integer('multa_id')->unsigned();
 
             $table->timestamps();
             $table->softDeletes();//deleted_at
@@ -35,6 +35,8 @@ class CreateTmultasTable extends Migration
      */
     public function down()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('tmultas');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

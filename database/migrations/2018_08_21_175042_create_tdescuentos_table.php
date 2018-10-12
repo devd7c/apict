@@ -19,7 +19,7 @@ class CreateTdescuentosTable extends Migration
             $table->date('fecha');
             $table->string('descripcion');
 
-            $table->integer('descuento_id')->unsigned()->index();
+            $table->integer('descuento_id')->unsigned();
 
             $table->timestamps();
             $table->softDeletes();//deleted_at
@@ -35,6 +35,8 @@ class CreateTdescuentosTable extends Migration
      */
     public function down()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('tdescuentos');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

@@ -15,12 +15,12 @@ class CreateProcesosTable extends Migration
     {
         Schema::create('procesos', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('empresa_id')->unsigned()->index();
-            $table->integer('gestion_id')->unsigned()->index();
-            $table->integer('periodo_id')->unsigned()->index();
-            $table->integer('regperiodo_id')->unsigned()->index();
-            $table->integer('patronal_id')->unsigned()->index();
-            $table->integer('laboral_id')->unsigned()->index();
+            $table->integer('empresa_id')->unsigned();
+            $table->integer('gestion_id')->unsigned();
+            $table->integer('periodo_id')->unsigned();
+            $table->integer('regperiodo_id')->unsigned();
+            $table->integer('patronal_id')->unsigned();
+            $table->integer('laboral_id')->unsigned();
 
             $table->timestamps();
             $table->softDeletes();//deleted_at
@@ -42,6 +42,8 @@ class CreateProcesosTable extends Migration
      */
     public function down()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('procesos');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

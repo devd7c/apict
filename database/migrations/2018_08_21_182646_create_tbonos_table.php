@@ -19,7 +19,7 @@ class CreateTbonosTable extends Migration
             $table->string('fecha');
             $table->string('descripcion');
 
-            $table->integer('bono_id')->unsigned()->index();
+            $table->integer('bono_id')->unsigned();
 
             $table->timestamps();
             $table->softDeletes();//deleted_at
@@ -35,6 +35,8 @@ class CreateTbonosTable extends Migration
      */
     public function down()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('tbonos');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

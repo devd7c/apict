@@ -20,7 +20,7 @@ class CreateTdomingosTable extends Migration
             $table->date('fecha');
             $table->string('descripcion');
 
-            $table->integer('domingo_id')->unsigned()->index();
+            $table->integer('domingo_id')->unsigned();
 
             $table->timestamps();
             $table->softDeletes();//deleted_at
@@ -36,6 +36,8 @@ class CreateTdomingosTable extends Migration
      */
     public function down()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('tdomingos');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

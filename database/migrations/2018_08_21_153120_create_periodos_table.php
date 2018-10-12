@@ -21,7 +21,7 @@ class CreatePeriodosTable extends Migration
             $table->string('cierre')->default(2); //1=Si, 2=No
             $table->float('cierre_ufv')->default(0); //Ejem: 2.14454
 
-            $table->integer('gestion_id')->unsigned()->index();
+            $table->integer('gestion_id')->unsigned();
 
             $table->timestamps();
             $table->softDeletes();//deleted_at
@@ -37,6 +37,8 @@ class CreatePeriodosTable extends Migration
      */
     public function down()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('periodos');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }
