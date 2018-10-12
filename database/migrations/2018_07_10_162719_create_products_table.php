@@ -21,7 +21,7 @@ class CreateProductsTable extends Migration
             $table->integer('quantity')->unsigned();
             $table->string('status')->default(Product::UNAVAILABLE_PRODUCT);
             $table->string('image');
-            $table->integer('seller_id')->unsigned()->index();
+            $table->integer('seller_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();//deleted_at
 
@@ -36,6 +36,8 @@ class CreateProductsTable extends Migration
      */
     public function down()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('products');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }
