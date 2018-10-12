@@ -177,9 +177,9 @@ class EmpresaController extends ApiController
                 DB::raw("(SELECT count(s.id) FROM sucursals s WHERE s.empresa_id = empresas.id AND s.deleted_at IS NULL) AS nro_sucursals")
             )
             ->where('empresas.deleted_at', '=', null) // Ocultar campos eliminados
-            ->where(DB::raw('CONCAT(empresas.nombre," ",empresas.nit," ",empresas.nombre_rep_legal, " ",empresas.titulo_rep_legal)'), 'like',  '%' . $request['search'] .'%')
-            ->orderBy($sortBy[0], $sortOrder[0])
-            ->paginate($pageSize[0]);
+            //->where(DB::raw('CONCAT(empresas.nombre," ",empresas.nit," ",empresas.nombre_rep_legal, " ",empresas.titulo_rep_legal)'), 'like',  '%' . $request['search'] .'%')
+            //->orderBy($sortBy[0], $sortOrder[0])
+            ->paginate(10);
 
         // return response()->json(['data' => $empresas, 'code' => 201]);
         return $empresas;
