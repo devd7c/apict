@@ -70,3 +70,8 @@ git stash pop
 APP_KEY:      base64:8vT8U2sCnDcH9Jmz3byYl5+gXohzSRSboODg6mXJLtc=
 DATABASE_URL: postgres://commwmvithocwr:53fe956272f25344be94ccd3c80f95287ee66d5443e8a075901474a0d8c598dd@ec2-107-22-189-136.compute-1.amazonaws.com:5432/d93ni5te2j1rn0
 
+git add .
+git commit -m "added postgres database configuration"
+git push heroku master
+
+heroku run php artisan migrate:refresh --seed
