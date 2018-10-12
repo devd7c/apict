@@ -62,3 +62,7 @@ git stash
 
 -------------MERGE AND PULL LOCAL CHANGES--------------
 git stash pop
+
+*********************HEROKU**********************************
+
+
