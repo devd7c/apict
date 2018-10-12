@@ -42,7 +42,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // POSTRESQL DEFINE
-        /*DB::statement("TRUNCATE TABLE users RESTART IDENTITY CASCADE");
+        DB::statement("TRUNCATE TABLE users RESTART IDENTITY CASCADE");
         DB::statement("TRUNCATE TABLE categories RESTART IDENTITY CASCADE");
         DB::statement("TRUNCATE TABLE products RESTART IDENTITY CASCADE");
         DB::statement("TRUNCATE TABLE transactions RESTART IDENTITY CASCADE");
@@ -66,9 +66,9 @@ class DatabaseSeeder extends Seeder
         DB::statement("TRUNCATE TABLE multas RESTART IDENTITY CASCADE");
         DB::statement("TRUNCATE TABLE tmultas RESTART IDENTITY CASCADE");
         DB::statement("TRUNCATE TABLE descuentos RESTART IDENTITY CASCADE");
-        DB::statement("TRUNCATE TABLE tdescuentos RESTART IDENTITY CASCADE");*/
+        DB::statement("TRUNCATE TABLE tdescuentos RESTART IDENTITY CASCADE");
 
-        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+        /*DB::statement('SET FOREIGN_KEY_CHECKS = 0');
 
         User::truncate();
         Category::truncate();
@@ -95,7 +95,7 @@ class DatabaseSeeder extends Seeder
         Multa::truncate();
         Tmulta::truncate();
         Descuento::truncate();
-        Tdescuento::truncate();
+        Tdescuento::truncate();*/
         //Rciva::truncate();
 
         DB::table('category_product')->truncate();
