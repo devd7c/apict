@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers\Proceso;
 
+use App\Empleado;
+use App\Http\Controllers\Rciva\RcivaController;
+use App\Laboral;
+use App\Patronal;
 use App\Proceso;
+use App\Regperiodo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ApiController;
 use Illuminate\Support\Collection;
@@ -43,15 +48,41 @@ class ProcesoController extends ApiController
     public function store(Request $request)
     {
         return DB::transaction(function () use ($request) {
-            $data = $request->all();
-            $data['empresa_id'] = 1; //$request->empresa_id;
-            $data['gestion_id'] = 1; //$request->gestion_id;
-            $data['periodo_id'] = 1; //$request->periodo_id;
-            $data['regperiodo_id'] = 2; //$request->regperiodo_id;
-            $data['patronal_id'] = 1; //$request->patronal_id;
-            $data['laboral_id'] = 1; //$request->laboral_id;
 
-            $proceso = Proceso::create($data);
+            $laboral = Laboral::where('empresa_id', '=', $request->empresa_id)
+                ->where('activo', 1)
+                ->first();
+
+            $patronal = Patronal::where('empresa_id', '=', $request->empresa_id)
+                ->where('activo', 1)
+                ->first();
+
+            $regperiodo = Regperiodo::where('periodo_id', '=', $request->periodo_id)
+                ->where('activo', 1)
+                ->first();
+
+
+            if (RcivaController::ifActualPeriodo($request->empresa_id, $request->gestion_id, $request->periodo_id) == true && $regperiodo != null) {
+
+                $data = $request->all();
+                $data['empresa_id'] = $request->empresa_id;
+                $data['gestion_id'] = $request->gestion_id;
+                $data['periodo_id'] = $request->periodo_id;
+                $data['regperiodo_id'] = $regperiodo->id;
+                $data['patronal_id'] = $patronal->id;
+                $data['laboral_id'] = $laboral->id;
+
+                $dependientes = Empleado::all()
+                    ->where('empresa_id', '=', $request->empresa_id);
+
+                // $proceso = Proceso::create($data);
+
+
+                return response()->json(['data' => $data, 'code' => 211]);
+
+            } else {
+                return response()->json(['data' => 'No es el periodo actual', 'code' => 211]);
+            }
 
             /*Laboral::create([
                 'smn' => 2060,
@@ -85,7 +116,7 @@ class ProcesoController extends ApiController
                 'empresa_id' => $empresa->id,
             ]);*/
 
-            return $this->showOne($proceso, 201);
+            //return $this->showOne($proceso, 201);
         });
     }
 

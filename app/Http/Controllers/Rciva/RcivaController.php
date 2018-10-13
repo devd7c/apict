@@ -73,7 +73,10 @@ class RcivaController extends ApiController
                     $rcivas = Rciva::all()
                         ->where('periodo_id', '=', $request->periodo);
                     //$dependiente = Empleado::find($request->empleado_id);
-                    $laboral = Laboral::where('activo', 1)->first();
+
+                    $laboral = Laboral::where('empresa_id', '=', $request->empresa)
+                        ->where('activo', 1)
+                        ->first();
 
                     //GENERAR SUELDO AFP+BONOS+DESCUENTOS+ANTIGUEDAD+MULTAS
                     $sueldo = $this->GenerarSueldo($dependiente, $laboral);
@@ -400,7 +403,7 @@ class RcivaController extends ApiController
         return round($factura, 2);
     }
 
-    public function ifActualPeriodo($empresa, $gestion, $periodo) {
+    public static function ifActualPeriodo($empresa, $gestion, $periodo) {
 
         $rcivas = DB::table('rcivas')
             ->select(
