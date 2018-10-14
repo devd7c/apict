@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\user;
 
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ApiController;
 use App\Transformers\UserTransformer;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends ApiController
 {
@@ -135,4 +137,16 @@ class UserController extends ApiController
         $user->delete();
         return $this->showOne($user);
     }
+
+    /*public function verify($token)
+    {
+           $user = User::where('verification_token', $token)->firstOrFail();
+
+           $user->verified = User::VERIFIED_USER;
+           $user->verification_token = null;
+
+           $user->save();
+
+           return $this->showMessage('The account has been verified successfully');
+    }*/
 }

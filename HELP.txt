@@ -24,17 +24,20 @@ php artisan make:transformer [controller_name]Transformer
 php artisan make:migration [table_name]_[table_name]_table --create=[table_name]_[table_name]
 
 ********PASSPORT**************
-Client ID: 3
-Client secret: nz2TxzZsDFYrfMQxQpWKprtq2sgxqEYu1JqSbTmZ
+php artisan passport:install --force -> automatic credentias
 
-Client ID: 4
-Client Secret: w7ldtHO7gHqnd14vS0h1OsrThmW77xCA75p4zPL3
+php artisan passport:client --password -> manually credentials
 
-Client ID: 5
-Client Secret: Jx5xu5IlWcSK5lvA7Wo8DeDtorZcZPnb75SGFiIj
+Encryption keys generated successfully.
 
-Client ID: 7
-Client Secret: Nt81vTy3oIgPF0mdY71tzMzREncDOJ6jttXbx2BM
+Personal access client created successfully.
+Client ID: 1
+Client Secret: 9mLGN6rRPTsFRG5YzYHoxUUX6iS2iCvViQomcBNz
+
+Password grant client created successfully.
+Client ID: 2
+Client Secret: lqLjQfhJ7ehI5hRSTGVcqOMXxSTC2q4WiHzGaJyK
+
 
 
 ***************TESTED***********************

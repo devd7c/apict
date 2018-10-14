@@ -15,51 +15,36 @@ class UserTransformer extends TransformerAbstract
     public function transform(User $user)
     {
         return [
-            'identifier' => (int)$user->id,
+            'id' => (int)$user->id,
             'name' => (string)$user->name,
             'email' => (string)$user->email,
-            'isVerified' => (int)$user->verified,
-            'isAdmin' => ($user->admin === 'true'),
-            'creationDate' => (string)$user->created_at,
-            'lastChange' => (string)$user->updated_at,
-            'deletedDate' => isset($user->deleted_at) ? (string) $user->deleted_at : null,
+            'verified' => (int)$user->verified,
+            'admin' => ($user->admin === 'true'),
+            'created_at' => (string)$user->created_at,
+            'updated_at' => (string)$user->updated_at,
+            'deleted_at' => isset($user->deleted_at) ? (string) $user->deleted_at : null,
 
-            'links' => [
+            /*'links' => [
                 [
                     'rel' => 'self',
                     'href' => route('users.show', $user->id),
                 ],
-            ]
+            ]*/
         ];
     }
 
     public static function originalAttribute($index)
     {
-        $attibutes = [
-            'identifier' => 'id',
+        $attributes = [
+            'id' => 'id',
             'name' => 'name',
             'email' => 'email',
-            'isVerified' => 'verified',
-            'isAdmin' => 'admin',
-            'creationDate' => 'created_at',
-            'lastChange' => 'updated_at',
-            'deletedDate' => 'deleted_at',
+            'verified' => 'verified',
+            'admin' => 'admin',
+            'created_at' => 'created_at',
+            'updated_at' => 'updated_at',
+            'deleted_at' => 'deleted_at',
         ];
-        return isset($attibutes[$index]) ? $attibutes[$index] : null;
-    }
-
-    public static function transformedAttribute($index)
-    {
-        $attibutes = [
-            'id' => 'identifier',
-            'name' => 'name',
-            'email' => 'email',
-            'verified' => 'isVerified',
-            'admin' => 'isAdmin',
-            'created_at' => 'creationDate',
-            'updated_at' => 'lastChange',
-            'deleted_at' => 'deletedDate',
-        ];
-        return isset($attibutes[$index]) ? $attibutes[$index] : null;
+        return isset($attributes[$index]) ? $attributes[$index] : null;
     }
 }

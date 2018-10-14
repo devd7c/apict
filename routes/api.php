@@ -222,6 +222,16 @@ Route::resource('transactions.sellers', 'Transaction\TransactionSellerController
 /**
  * Users
  */
-Route::resource('users', 'User\UserController', ['except' => ['created', 'edit']]);
+Route::resource('users', 'User\UserController');
 Route::name('verify')->get('users/verify/{token}', 'User\UserController@verify');
 Route::name('resend')->get('users/{user}/resend', 'User\UserController@resend');
+
+
+//Route::name('authenticate')->post('auth/authenticate/{find}', 'AuthController@authenticate');
+//Route::post('auth/login', 'AuthController@authenticate');
+Route::name('login')->get('auth/login', 'AuthController@authenticate');
+//Route::post('auth/token', 'AuthController@login');
+//Route::post('auth/refreshToken', 'AuthController@refreshToken');
+
+Route::post('oauth/token', 'Laravel\Passport\Http\Controllers\AccessTokenController@issueToken');
+Route::post('oauth/token/refresh', 'Laravel\Passport\Http\Controllers\TransientTokenController@refresh');
