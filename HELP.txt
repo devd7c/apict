@@ -52,6 +52,9 @@ https://form.jotform.com/81274441091957
 
 
 *********************GITHUB**********************************
+git remote -v -> VERIFIY URL PROJECT
+git remote add origin https://github.com/devd7c/apibtc.git -> SET URL PROJECT
+
 git init
 git add .
 git commit -m "description commit"
